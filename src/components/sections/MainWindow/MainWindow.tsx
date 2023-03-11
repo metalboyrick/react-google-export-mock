@@ -16,6 +16,7 @@ import { hexToRGBA } from "helpers/colorUtils";
 
 import ConnectFlowNode from "./components/ConnectFlowNode";
 import ConnectGoogleAccount from "./components/ConnectGoogleAccount";
+import ExportDetail from "./components/ExportDetail";
 
 function MainWindow() {
   return (
@@ -66,7 +67,8 @@ function MainWindow() {
 
         <Flex>
           {/* <ConnectGoogleAccount /> */}
-          <ConnectFlowNode />
+          {/* <ConnectFlowNode /> */}
+          <ExportDetail />
         </Flex>
       </SimpleGrid>
     </Flex>

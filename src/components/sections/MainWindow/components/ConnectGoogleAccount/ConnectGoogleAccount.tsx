@@ -14,7 +14,7 @@ function ConnectGoogleAccount() {
     >
       <HStack spacing="12px" width="100%">
         <Box
-          borderRadius="9999px"
+          borderRadius="80px"
           bgColor={gray3}
           padding="10px"
           width="36px"

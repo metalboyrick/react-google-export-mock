@@ -13,7 +13,7 @@ function ConnectFlowNode() {
       padding="8px 12px"
       fontWeight="normal"
       height="32px"
-      borderRadius="9999px"
+      borderRadius="32px"
       alignItems={"center"}
     >
       <DatabaseIcon boxSize="16px" marginRight={"4px"}/>
