@@ -1,8 +1,12 @@
+import { ChakraProvider } from "@chakra-ui/react";
+
 import MainWindow from './sections/MainWindow';
 
 function App() {
   return (
-    <MainWindow/>
+    <ChakraProvider>
+      <MainWindow />
+    </ChakraProvider>
   );
 }
 
