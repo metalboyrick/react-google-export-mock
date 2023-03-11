@@ -14,6 +14,7 @@ import { gray4, gray6, green3 } from "constants/colors";
 import { noop } from "constants/placeholders";
 import { hexToRGBA } from "helpers/colorUtils";
 
+import ConnectFlowNode from "./components/ConnectFlowNode";
 import ConnectGoogleAccount from "./components/ConnectGoogleAccount";
 
 function MainWindow() {
@@ -64,7 +65,8 @@ function MainWindow() {
         </Flex>
 
         <Flex>
-          <ConnectGoogleAccount />
+          {/* <ConnectGoogleAccount /> */}
+          <ConnectFlowNode />
         </Flex>
       </SimpleGrid>
     </Flex>

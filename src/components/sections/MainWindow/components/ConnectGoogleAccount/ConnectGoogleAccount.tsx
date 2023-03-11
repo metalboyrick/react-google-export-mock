@@ -1,4 +1,4 @@
-import { Box, Button, Flex, SimpleGrid, VStack, Text, HStack } from "@chakra-ui/react";
+import { Box, Button, SimpleGrid, VStack, Text, HStack } from "@chakra-ui/react";
 import GoogleIcon from "components/icons/GoogleIcon";
 import { blue, gray1, gray3, gray8, white } from "constants/colors";
 import { noop } from "constants/placeholders";
