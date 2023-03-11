@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Flex,
   HStack,
   IconButton,
@@ -14,6 +13,8 @@ import TrashIcon from "components/icons/TrashIcon";
 import { gray4, gray6, green3 } from "constants/colors";
 import { noop } from "constants/placeholders";
 import { hexToRGBA } from "helpers/colorUtils";
+
+import ConnectGoogleAccount from "./components/ConnectGoogleAccount";
 
 function MainWindow() {
   return (
@@ -62,7 +63,9 @@ function MainWindow() {
           />
         </Flex>
 
-        <Flex>Content</Flex>
+        <Flex>
+          <ConnectGoogleAccount />
+        </Flex>
       </SimpleGrid>
     </Flex>
   );
