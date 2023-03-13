@@ -1,9 +1,13 @@
 import { Box, Button, SimpleGrid, VStack, Text, HStack } from "@chakra-ui/react";
 import GoogleIcon from "components/icons/GoogleIcon";
 import { blue, gray1, gray3, gray8, white } from "constants/colors";
-import { noop } from "constants/placeholders";
+import { useStateContext } from "contexts/StateContext";
+import { EXPORT_STATE } from "../../MainWindow.constants";
 
 function ConnectGoogleAccount() {
+
+  const { setCurrentState } = useStateContext();
+
   return (
     <SimpleGrid
       rowGap="12px"
@@ -37,13 +41,13 @@ function ConnectGoogleAccount() {
 
       <Box>
         <Button
-          onClick={noop}
           bgColor={blue}
           color={white}
           fontSize={"10px"}
           borderRadius="4px"
           padding="10px"
           height="24px"
+          onClick={() => setCurrentState(EXPORT_STATE)}
         >
           Connect
         </Button>

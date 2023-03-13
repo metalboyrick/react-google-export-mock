@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ChevronDownIcon, CloseIcon, SearchIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -8,20 +9,33 @@ import {
   HStack,
   IconButton,
   Input,
-  InputGroup,
-  InputLeftElement,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
+  Text
 } from "@chakra-ui/react";
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
 import GoogleSheetIcon from "components/icons/GoogleSheetIcon";
-import GoogleSheetsIcon from "components/icons/GoogleSheetIcon";
 import { blue, gray10, gray4, gray8, white } from "constants/colors";
 
 import * as sty from "./ExportDetail.styles";
+import { TAB_NAMES } from "./ExportDetail.constants";
+
+dayjs.extend(relativeTime);
 
 function ExportDetail() {
+
+  const [tabSearchValue, setTabSearchValue] = useState("");
+  const [lastStatus, setLastStatus] = useState<string | null>(null);
+
+  const handleExportClick = () => {
+    const today = new Date();
+    setLastStatus(today.toString());
+  }
+
   return (
     <Box width="100%">
       <FormControl width="100%">
@@ -45,11 +59,9 @@ function ExportDetail() {
             Account Name
           </MenuButton>
           <MenuList width="100%" css={sty.inputText}>
-            <MenuItem>Download</MenuItem>
-            <MenuItem>Create a Copy</MenuItem>
-            <MenuItem>Mark as Draft</MenuItem>
-            <MenuItem>Delete</MenuItem>
-            <MenuItem>Attend a Workshop</MenuItem>
+            <MenuItem>Account1</MenuItem>
+            <MenuItem>Account2</MenuItem>
+            <MenuItem>Account3</MenuItem>
           </MenuList>
         </Menu>
       </FormControl>
@@ -71,6 +83,8 @@ function ExportDetail() {
               height="100%"
               borderRadius="0"
               width="100%"
+              readOnly
+              value="sheet name"
             />
           </HStack>
 
@@ -96,7 +110,12 @@ function ExportDetail() {
               >
                 Tab1
               </MenuButton>
-              <MenuList css={sty.inputText} border="none" boxShadow={"0px 4px 12px rgba(0, 0, 0, 0.06)"} borderRadius="8px">
+              <MenuList
+                css={sty.inputText}
+                border="none"
+                boxShadow={"0px 4px 12px rgba(0, 0, 0, 0.06)"}
+                borderRadius="8px"
+              >
                 <Flex
                   border={`1px solid ${gray4}`}
                   borderRadius="4px"
@@ -114,11 +133,14 @@ function ExportDetail() {
                     borderRadius="0"
                     fontSize="10px"
                     width="100%"
+                    onChange={(e) => setTabSearchValue(e.target.value)}
                   />
                 </Flex>
-                <MenuItem>Tab1</MenuItem>
-                <MenuItem>Tab2</MenuItem>
-                <MenuItem>Tab3</MenuItem>
+                {TAB_NAMES.filter((item) => item.includes(tabSearchValue)).map(
+                  (item, index) => (
+                    <MenuItem key={index}>{item}</MenuItem>
+                  )
+                )}
               </MenuList>
             </Menu>
             <IconButton
@@ -137,16 +159,23 @@ function ExportDetail() {
           </HStack>
         </Flex>
       </FormControl>
-      <FormControl mt="12px" width="100%">
+      <FormControl mt="12px" width="100%" alignItems="center">
         <Button
           bgColor={blue}
           color={white}
           fontSize="11px"
           width="100%"
           height="32px"
+          onClick={handleExportClick}
         >
           Export
         </Button>
+        {
+          lastStatus && <Text color={gray8} fontSize="10px" mt="8px" align="center">
+            {`Last export ${dayjs(lastStatus).fromNow()}`}
+          </Text>
+        }
+
       </FormControl>
     </Box>
   );
