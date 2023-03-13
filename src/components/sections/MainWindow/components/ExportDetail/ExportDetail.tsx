@@ -30,6 +30,8 @@ function ExportDetail() {
 
   const [tabSearchValue, setTabSearchValue] = useState("");
   const [lastStatus, setLastStatus] = useState<string | null>(null);
+  const [selectedAccount, setSelectedAccount] = useState("");
+  const [selectedTab, setSelectedTab] = useState("Tab1");
 
   const handleExportClick = () => {
     const today = new Date();
@@ -56,12 +58,12 @@ function ExportDetail() {
             padding="0 10px"
             height="32px"
           >
-            Account Name
+            {selectedAccount.length === 0 ? "Account Name" : selectedAccount}
           </MenuButton>
           <MenuList width="100%" css={sty.inputText}>
-            <MenuItem>Account1</MenuItem>
-            <MenuItem>Account2</MenuItem>
-            <MenuItem>Account3</MenuItem>
+            <MenuItem onClick={() => setSelectedAccount("Account1")}>Account1</MenuItem>
+            <MenuItem onClick={() => setSelectedAccount("Account2")}>Account2</MenuItem>
+            <MenuItem onClick={() => setSelectedAccount("Account3")}>Account3</MenuItem>
           </MenuList>
         </Menu>
       </FormControl>
@@ -108,7 +110,7 @@ function ExportDetail() {
                 borderRadius="24px"
                 color={gray8}
               >
-                Tab1
+                {selectedTab}
               </MenuButton>
               <MenuList
                 css={sty.inputText}
@@ -138,7 +140,7 @@ function ExportDetail() {
                 </Flex>
                 {TAB_NAMES.filter((item) => item.includes(tabSearchValue)).map(
                   (item, index) => (
-                    <MenuItem key={index}>{item}</MenuItem>
+                    <MenuItem key={index} onClick={() => setSelectedTab(item)}>{item}</MenuItem>
                   )
                 )}
               </MenuList>
